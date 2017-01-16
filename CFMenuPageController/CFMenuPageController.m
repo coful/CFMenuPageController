@@ -23,7 +23,7 @@
 @property (nonatomic,strong) UIScrollView *menuView;
 
 @property NSInteger fromPage;
-
+@property NSInteger currentPage;
 @property NSInteger toPage;
 
 @property UIGestureRecognizer *PagePanGestureRecognizer;
@@ -51,7 +51,7 @@
     }
     
     _fromPage = 0;
-    
+    _currentPage = 0;
     _toPage = 0;
     
     [self initMenu];
@@ -149,7 +149,7 @@
 #pragma mark 直接点击
 -(void)menuBtnClick:(UIButton *)sender{
     
-    _fromPage = _toPage;
+    _fromPage = _currentPage;
     
     _toPage = sender.tag-1000;
     
@@ -201,7 +201,7 @@
 }
 
 -(void)menuSelect:(NSInteger)toPage{
-    
+    _currentPage = toPage;
     if (toPage != _fromPage) {
         
         //      NSLog(@"%ld -> %ld",(long)_fromPage,(long)toPage);
